@@ -1,26 +1,78 @@
 # Ex6 Right Rotation LinkedList
-## DATE:22-11-2025
+## DATE: 22/08/25
 ## AIM:
 To write a Java  program to:
 Create a singly linked list.
 Rotate the linked list to the right by k positions.
 Display the rotated linked list.
 ## Algorithm
-1. Read n values to build the linked list and read k.
-2. Find the length of the list and reach the last node.
-3. Make the list circular by connecting last node to head.
-4. Move length − (k % length) steps to find new tail.
-5. Break the circle and print the list from the new head.
-   
+1. start the program.
+2. Handle edge cases.
+3. Find the length of the linked list.
+4. Connect last node to head (make circular list).
+5. Normalize k and find the new tail position.
+6. Break the circle to form new list and return newHead.
+7. Stop the program.
 
 ## Program:
 ```java
+/*
 Program to  Right Rotation LinkedList
 Developed by: Kanagavel A K
-RegisterNumber: 212223230096
+RegisterNumber:  212223230096
+*/
 
 import java.util.Scanner;
-
+public class RotateLinkedList {
+    public static Node rotate(Node head, int k) {
+        if (head == null || head.next == null || k == 0) {
+            return head;
+        }
+        Node current = head;
+        int length = 1;
+        while (current.next != null) {
+            current = current.next;
+            length++;
+        }
+        current.next = head;
+        k = k % length;
+        int stepsToNewHead = length - k;
+        Node newTail = current;
+        while (stepsToNewHead-- > 0) {
+            newTail = newTail.next;
+        }
+        Node newHead = newTail.next;
+        newTail.next = null;
+        return newHead;
+    }
+    public static void display(Node head) {
+        Node current = head;
+        System.out.print("LinkedList: ");
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Node head = null, tail = null;
+        int n = scanner.nextInt();
+        for (int i = 0; i < n; i++) {
+            Node newNode = new Node(scanner.nextInt());
+            if (head == null) {
+                head = tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
+            }
+        }
+        int k = scanner.nextInt();
+        head = rotate(head, k);
+        display(head);
+        scanner.close();
+    }
+}
 class Node {
     int data;
     Node next;
@@ -30,72 +82,12 @@ class Node {
     }
 }
 
-class prog {
-    public static Node rotateRight(Node head, int k) {
-        if (head == null || head.next == null || k == 0)
-            return head;
-
-        Node temp = head;
-        int length = 1;
-        while (temp.next != null) {
-            temp = temp.next;
-            length++;
-        }
-
-        temp.next = head;
-
-        int stepsToNewHead = length - k % length;
-        Node newTail = head;
-        for (int i = 1; i < stepsToNewHead; i++) {
-            newTail = newTail.next;
-        }
-
-        Node newHead = newTail.next;
-
-        newTail.next = null;
-
-        return newHead;
-    }
-
-    public static void printList(Node head) {
-        Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.data + " ");
-            temp = temp.next;
-        }
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        int n = sc.nextInt();
-
-        if (n <= 0) {
-            sc.close();
-            return;
-        }
-
-        Node head = new Node(sc.nextInt());
-        Node tail = head;
-        for (int i = 1; i < n; i++) {
-            tail.next = new Node(sc.nextInt());
-            tail = tail.next;
-        }
-
-        int k = sc.nextInt();
-
-        head = rotateRight(head, k);
-
-        System.out.print("LinkedList: ");
-        printList(head);
-
-        sc.close();
-    }
-}
 ```
 
 ## Output:
-<img width="898" height="213" alt="image" src="https://github.com/user-attachments/assets/f39e86c6-bde2-492f-8d51-2a46055ced76" />
+
+<img width="899" height="243" alt="image" src="https://github.com/user-attachments/assets/b2ff88ad-e7fb-4bc8-8f91-4b4e59cf9e59" />
+
 
 ## Result:
-Thus, the Java program to perfom right rotation on linked list is implemented successfully.
+Thus, the C program to perfom right rotation on linked list is implemented successfully.

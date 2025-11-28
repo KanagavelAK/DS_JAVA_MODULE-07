@@ -1,26 +1,30 @@
 # Ex8 Detection of Cycle and Finding the Starting Node in a Linked List
-## DATE: 21/11/2025
+## DATE: 29/08/25
 ## AIM:
 To write a program that detects a cycle in a linked list and returns the node where the cycle begins.
 If there is no cycle, the program should return null without modifying the linked list.
 ## Algorithm
-1. Use two pointers slow and fast to traverse, with fast moving twice as fast.
-
-2.If slow and fast ever meet, a cycle exists.
-
-3.Set a new pointer entry at the head.
-
-4.Move both entry and slow one step at a time.
-
-5.The node where they meet is the start of the cycle; if they never meet, there is no cycle.
-  
-
+```
+1. Start the program.
+2. Read input & build linked list.
+3. If pos >= 0, link last node to pos node.
+4. Use Floyd’s algorithm to detect cycle.
+5. If no cycle → print "no cycle".
+6. If cycle detected:
+         Move second pointer from head until it meets slow pointer.
+         That meeting point is cycle start.
+7. Find index of that node in nodeList. 
+8. Print "tail connects to node index X".
+9. Stop the program.
+```
 ## Program:
 ```java
+/*
 program that detects a cycle in a linked list and returns the node where the cycle begins.
 If there is no cycle, the program should return null without modifying the linked list.
 Developed by: Kanagavel A K
 RegisterNumber: 212223230096
+*/
 
 import java.util.*;
 
@@ -113,7 +117,8 @@ public class Solution {
 ```
 
 ## Output:
-<img width="925" height="215" alt="image" src="https://github.com/user-attachments/assets/1cb05483-ba5b-4ad5-b74b-0b9f2d733fa1" />
+
+<img width="889" height="292" alt="image" src="https://github.com/user-attachments/assets/a53af8a9-f370-4bea-b8a2-baa1b53c1bdf" />
 
 ## Result:
 The program successfully detects whether a cycle exists in the linked list.

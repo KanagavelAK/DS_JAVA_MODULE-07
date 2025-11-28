@@ -1,26 +1,24 @@
 # Ex7 Removal of Nodes with a Specific Value from a Linked List
-## DATE:21-11-2025
+## DATE:  27/08/25
 ## AIM:
 To write a java  program that removes all nodes from a linked list whose value matches a given integer (val) and returns the new head of the modified linked list.
 
 ## Algorithm
-
-1.Move head forward until it reaches a node whose value is not equal to val. 
-
-2.If the list becomes empty, return null. 
-
-3.Start from the new head and traverse the list using a pointer (current).
-
-4.If current.next contains val, skip that node 
-
-5.Otherwise, move to the next node. Continue until the end, then return the modified head.
-
+1. Start the program.
+2. Create dummy head.
+3. Set prev = dummy, curr = head.
+4. Traverse list.
+5. Move curr each step.
+6. Return dummy.next as updated head.
+7. Stop the program.
 
 ## Program:
 ```java
-Program that removes all nodes from a linked list whose value matches a given integer (val) and returns the new head of the modified linked list.
+/*
+program that removes all nodes from a linked list whose value matches a given integer (val) and returns the new head of the modified linked list.
 Developed by: Kanagavel A K
 RegisterNumber: 212223230096
+*/
 
 import java.util.*;
 
@@ -35,21 +33,20 @@ class ListNode {
 
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
-        ListNode dummy=new ListNode(-1);
-        dummy.next=head;
-        ListNode prev=dummy;
-        ListNode curr=head;
-        while(curr!=null){
-            if(curr.val==val){
-                prev.next=curr.next;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy, curr = head;
+
+        while (curr != null) {
+            if (curr.val == val) {
+                prev.next = curr.next; 
+            } else {
+                prev = curr; 
             }
-            else{
-                prev=curr;
-            }
-            curr=curr.next;
+            curr = curr.next; 
         }
-        return dummy.next;
-        
+
+        return dummy.next; 
     }
 }
 
@@ -78,28 +75,27 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-     
         String input = scanner.nextLine().replaceAll("\\s", "");
-        int[] nums = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
+        int[] nums = Arrays.stream(input.split(","))
+                           .mapToInt(Integer::parseInt)
+                           .toArray();
 
-       
-       
+
         int val = scanner.nextInt();
-
         ListNode head = buildList(nums);
         Solution solution = new Solution();
         ListNode updated = solution.removeElements(head, val);
-
         System.out.println(listToString(updated));
 
         scanner.close();
     }
-} 
+}
+
 ```
 
 ## Output:
-<img width="646" height="195" alt="image" src="https://github.com/user-attachments/assets/ba1bc07f-befa-4133-aa03-87b6e62f3122" />
 
+<img width="711" height="378" alt="image" src="https://github.com/user-attachments/assets/70f588ac-de12-42b9-ae1e-38a456093a03" />
 
 ## Result:
 The java program successfully removes all nodes with the specified value (val) from the linked list and returns the new head.
